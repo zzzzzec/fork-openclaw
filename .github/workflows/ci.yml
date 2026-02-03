@@ -642,3 +642,10 @@ jobs:
       - name: Run Android ${{ matrix.task }}
         working-directory: apps/android
         run: ${{ matrix.command }}
+        
+      - name: Upload APK
+        if: matrix.task == 'build'
+        uses: actions/upload-artifact@v4
+        with:
+          name: openclaw-android-debug
+          path: apps/android/app/build/outputs/apk/debug/app-debug.apk
